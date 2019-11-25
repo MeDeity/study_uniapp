@@ -1,9 +1,14 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<!-- <image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
-		</view>
+		</view> -->
+		<navigator url="../ceshi/ceshi">
+			<view class="icon iconfont icon-bofang" style="color: #09BB07;">播放</view>
+			<view class="">跳转到动画测试页</view>
+		</navigator>
+		
 	</view>
 </template>
 
@@ -11,11 +16,11 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				
 			}
 		},
 		onLoad() {
-
+			
 		},
 		methods: {
 
