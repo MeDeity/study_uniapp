@@ -1,187 +1,61 @@
 <template>
-	<view class="content">
-		<!-- <image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view> -->
-		
-		<view class="index-list">
-			<view class="index-list1">
-				<view>
-					<image src="../../static/mine_select.png" mode="widthFix" lazy-load="" ></image>
-					昵称
-				</view>
-				<view>
-					<view class="icon iconfont icon-bofang"></view>关注
-				</view>
-			</view>
-			<view class="index-list2">我是标题我是标题我是标题我是标题我是标题我是标题</view>
-			<view class="index-list3 common-center">
-				<!--图片-->
-				<image src="../../static/logo.png" mode="widthFix" lazy-load></image>
-				<view class="icon iconfont icon-bofang index-list-play"></view>
-				<view class="index-list-playinfo">
-					20w次播放 20:47
-				</view>
-			</view>
-			<view class="index-list4">
-				<view>
-					<view><view class="icon iconfont icon-bofang"></view>10</view>
-					<view><view class="icon iconfont icon-bofang"></view>10</view>
-				</view>
-				<view>
-					<view><view class="icon iconfont icon-bofang"></view>10</view>
-					<view><view class="icon iconfont icon-bofang"></view>10</view>
-				</view>
-			</view>
-		</view>
-		<navigator url="../ceshi/ceshi">
-			<view class="icon iconfont icon-bofang" style="color: #09BB07;">播放</view>
-			
-			
-		</navigator>
-		
+	<view>
+		<block v-for="(item,index) in list" :key="index">
+			<index-list :item="item" :index="index"></index-list>
+		</block>
 	</view>
 </template>
 
 <script>
+	import indexList from "../../components/index/index-list.vue"
+	
 	export default {
+		components:{
+			indexList
+		},
 		data() {
 			return {
-				
-			}
-		},
-		onLoad() {
-			
-		},
-		methods: {
-
+				list:[
+					{
+						uerpic:"../../static/logo.png",
+						username:"昵称",
+						isguanzhu:false,
+						title:"我是标题",
+						type:"img",
+						titlepic:"../../static/logo.png",
+						playnum:20,
+						long:'2:47',
+						infonum:{
+							index:0,//0 未操作 1 顶 2 踩
+							dingnum:11,
+							cai:11
+						},
+						commentnum:11,
+						sharenum:10
+					},
+					{
+						uerpic:"../../static/logo.png",
+						username:"昵称",
+						isguanzhu:false,
+						title:"我是标题",
+						type:"img",
+						titlepic:"../../static/logo.png",
+						playnum:20,
+						long:'2:47',
+						infonum:{
+							index:0,//0 未操作 1 顶 2 踩
+							dingnum:11,
+							cai:11
+						},
+						commentnum:11,
+						sharenum:10
+					}
+				]
+			};
 		}
 	}
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
-
-	.index-list{
-		padding: 20upx;
-		border-bottom: 1upx solid #999999;
-	}
-	.index-list1{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 24rpx;
-	}
-	.index-list1>view:first-child{
-		align-items: center;
-		color: #999999;
-		
-	}
-	
-	.index-list1>view:first-child image{
-		width: 90upx;
-		height: 90upx;
-		border-radius: 100%;
-		margin-right: 10upx;
-		align-content: center;
-		align-items: center;
-	}
-	.index-list1>view:first-child{
-		display: flex;
-		align-content: center;
-	}
-	.index-list1>view:last-child{
-		display: flex;
-		align-items: center;
-		padding-left: 15upx;
-		padding-right: 15upx;
-	}
-	.index-list1>view:last-child view{
-		margin-right: 10upx;
-	}
-	
-	.index-list1>view:last-child{
-		background-color: #929292;
-		border-radius: 5upx;
-	}
-	
-	.index-list2{
-		padding-top: 15upx;
-		font-size: 32upx;
-	}
-	.common-center{
-		justify-content: center;
-		align-items: center;
-	}
-	.index-list3 {
-		position: relative;
-		border-radius: 20upx;
-		justify-content: center;
-		align-items: center;
-	}
-	.index-list-play {
-		position: absolute;
-		font-size: 50upx;
-	}
-	.index-list-playinfo {
-		position: absolute;
-		background-color: rgba(51,51,51,0.72);
-		color: #FFFFFF;
-		bottom: 8upx;
-		right: 8upx;
-		border-radius: 50upx;
-		padding-left: 10upx;
-		padding-right: 10upx;
-	}
-	.index-list4{
-		display: flex;
-		justify-content: space-between;
-		align-content: center;
-		padding: 15upx;
-	}
-	.index-list4>view{
-		color: #999999;
-	}
-	.index-list4>view:first-child{
-		display: flex;
-		align-content: center;
-	}
-	.index-list4>view:last-child{
-		display: flex;
-		align-content: center;
-	}
-	.index-list4>view>view{
-		display: flex;
-		align-items: center;
-		padding: 10upx;
-	}
-	
-	.index-list4>view>view>view{
-		padding-right: 10upx;
-	}
 </style>
