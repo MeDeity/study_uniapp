@@ -15,9 +15,15 @@
 					<view class="icon iconfont icon-bofang"></view>关注
 				</view>
 			</view>
-			<view class="index-list2">我是标题</view>
-			<view class="index-list3"></view>
-				<image src="../../static/logo.png" mode="widthFix"></image>
+			<view class="index-list2">我是标题我是标题我是标题我是标题我是标题我是标题</view>
+			<view class="index-list3 common-center">
+				<!--图片-->
+				<image src="../../static/logo.png" mode="widthFix" lazy-load></image>
+				<view class="icon iconfont icon-bofang index-list-play"></view>
+				<view class="index-list-playinfo">
+					20w次播放 20:47
+				</view>
+			</view>
 			<view class="index-list4">
 				<view>
 					<view><view class="icon iconfont icon-bofang"></view>10</view>
@@ -89,10 +95,12 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		font-size: 24rpx;
 	}
 	.index-list1>view:first-child{
 		align-items: center;
 		color: #999999;
+		
 	}
 	
 	.index-list1>view:first-child image{
@@ -123,17 +131,41 @@
 	}
 	
 	.index-list2{
-		
+		padding-top: 15upx;
+		font-size: 32upx;
 	}
-	.index-list3{
-		width: 100%;
+	.common-center{
+		justify-content: center;
+		align-items: center;
+	}
+	.index-list3 {
+		position: relative;
 		border-radius: 20upx;
+		justify-content: center;
+		align-items: center;
+	}
+	.index-list-play {
+		position: absolute;
+		font-size: 50upx;
+	}
+	.index-list-playinfo {
+		position: absolute;
+		background-color: rgba(51,51,51,0.72);
+		color: #FFFFFF;
+		bottom: 8upx;
+		right: 8upx;
+		border-radius: 50upx;
+		padding-left: 10upx;
+		padding-right: 10upx;
 	}
 	.index-list4{
 		display: flex;
 		justify-content: space-between;
 		align-content: center;
 		padding: 15upx;
+	}
+	.index-list4>view{
+		color: #999999;
 	}
 	.index-list4>view:first-child{
 		display: flex;
@@ -147,5 +179,9 @@
 		display: flex;
 		align-items: center;
 		padding: 10upx;
+	}
+	
+	.index-list4>view>view>view{
+		padding-right: 10upx;
 	}
 </style>
