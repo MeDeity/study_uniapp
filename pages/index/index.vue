@@ -1,15 +1,7 @@
 <template>
 	<view class="uni-tab-bar">
-		<scroll-view id="tab-bar" class="uni-swiper-tab" scroll-x :show-scrollbar="false" :scroll-into-view="scrollInto">
-			<block v-for="(tab,index) in tabBars" :key="tab.id">
-				<view class="swiper-tab-list" :id="tab.id" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''" :data-current="index" @click="ontabtap(index)">
-					<!-- <text class="uni-tab-item-title" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''">
-					{{tab.name}}</text> -->
-					{{tab.name}}
-					<!-- <view class="swiper-tab-list"></view> -->
-				</view>
-			</block>
-		</scroll-view>
+		<swiper-tab-header :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="ontabtap"></swiper-tab-header>
+		
 		<swiper :indicator-dots="false" :autoplay="false" class="swiper-box" 
 		:style="{height:swiperHeight+'px'}" 
 		:current="tabIndex"
@@ -41,11 +33,12 @@
 </template>
 
 <script>
-	import indexList from "../../components/index/index-list.vue"
-	
+	import indexList from "../../components/index/index-list.vue";
+	import swiperTabHeader from "../../components/index/swiper-tab-header.vue";
 	export default {
 		components:{
-			indexList
+			indexList,
+			swiperTabHeader
 		},
 		methods:{
 			ontabtap(index) {

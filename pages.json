@@ -59,6 +59,10 @@
 		    "path" : "pages/news/news",
 		    "style" : {}
 		}
+        ,{
+            "path" : "components/index/swiper-tab-header",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
