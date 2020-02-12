@@ -63,6 +63,10 @@
             "path" : "components/index/swiper-tab-header",
             "style" : {}
         }
+        ,{
+            "path" : "components/common/load-more",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

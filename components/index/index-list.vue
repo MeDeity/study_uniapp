@@ -1,15 +1,15 @@
 <template>
-	<view class="index-list">
+	<view class="index-list animated fadeIn" >
 		<view class="index-list1">
 			<view>
 				<image :src="item.uerpic" mode="widthFix" lazy-load="" ></image>
 				{{item.username}}
 			</view>
-			<view v-show="item.isguanzhu">
+			<view v-show="!item.isguanzhu" @tap="guanzhu()">
 				<view class="icon iconfont icon-bofang"></view>关注
 			</view>
 		</view>
-		<view class="index-list2">{{item.title}}</view>
+		<view class="index-list2" @tap="detail()">{{item.title}}</view>
 		<view class="index-list3 common-center">
 			<!--图片-->
 			<image :src="item.titlepic" mode="widthFix" lazy-load></image>
@@ -23,8 +23,13 @@
 		</view>
 		<view class="index-list4">
 			<view>
-				<view :class="{'active':(item.infonum.index==1)}"><view class="icon iconfont icon-bofang"></view>{{item.dingnum}}</view>
-				<view><view class="icon iconfont icon-bofang"></view>{{item.cai}}</view>
+				<view :class="{'active':(item.infonum.index==1)}" @tap="caozuo('ding')">
+					<view class="icon iconfont icon-bofang"></view>{{item.infonum.dingnum}}
+				</view>
+				<view :class="{'active':(item.infonum.index==2)}" @tap="caozuo('cai')">
+					<view class="icon iconfont icon-bofang"></view>
+					{{item.infonum.cai}}
+				</view>
 			</view>
 			<view>
 				<view><view class="icon iconfont icon-bofang"></view>{{item.commentnum}}</view>
@@ -39,6 +44,44 @@
 		props:{
 			item:Object,
 			index:Number
+		},
+		methods:{
+			guanzhu(){
+				this.item.isguanzhu = true;
+				uni.showToast({
+					title: '关注成功!',
+				});
+			},
+			caozuo(type){
+				switch(type){
+					case 'ding':
+						if(this.item.infonum.index==1){
+							return;
+						}
+						this.item.infonum.dingnum++;
+						if(this.item.infonum.index==2){
+							this.item.infonum.cai--;
+						}
+						this.item.infonum.index==1;
+						console.info(this.item.infonum.index);
+						break;
+					case 'cai':
+						console.info(this.item.infonum);
+						if(this.item.infonum.index==2){
+							return;
+						}
+						this.item.infonum.cai++;
+						if(this.item.infonum.index==1){
+							this.item.infonum.ding--;
+						}
+						this.item.infonum.index==2;
+						console.info(this.item.infonum.index);
+						break;
+				}
+			},
+			detail(){
+				console.info("进入详情页")
+			}
 		}
 	}
 </script>

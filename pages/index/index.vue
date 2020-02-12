@@ -13,7 +13,7 @@
 						<index-list :item="item" :index="id"></index-list>
 					</block>
 					<!--上拉加载-->
-					<view class="loading-more">{{loadText}}</view>
+					<load-more :loadText="loadText"></load-more>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -36,10 +36,12 @@
 <script>
 	import indexList from "../../components/index/index-list.vue";
 	import swiperTabHeader from "../../components/index/swiper-tab-header.vue";
+	import loadMore from "../../components/common/load-more.vue"
 	export default {
 		components:{
 			indexList,
-			swiperTabHeader
+			swiperTabHeader,
+			loadMore
 		},
 		methods:{
 			ontabtap(index) {
