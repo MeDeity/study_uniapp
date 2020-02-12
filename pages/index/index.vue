@@ -7,12 +7,13 @@
 		:current="tabIndex"
 		@change="tabChange">
 			<swiper-item v-for="(items,index) in newsList" :key="index">
-				<scroll-view scroll-y="true" class="scroll-v list">
+				<scroll-view scroll-y="true" class="scroll-v list" @scrolltolower="loadmore(index)">
+					<!--图文列表-->
 					<block v-for="(item,id) in items" :key="id">
-						<!-- <block v-for="(data,id1) in item" :key="id1"> -->
-							<index-list :item="item" :index="id"></index-list>
-						<!-- </block> -->
+						<index-list :item="item" :index="id"></index-list>
 					</block>
+					<!--上拉加载-->
+					<view class="loading-more">{{loadText}}</view>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -50,6 +51,42 @@
 			tabChange(e) {
 				console.log(JSON.stringify(e.detail));
 				this.tabIndex = e.detail.current;
+			},
+			loadmore(index){
+				if(this.loadText!="上拉加载更多"){
+					return;
+				}
+				console.info("加载中...")
+				this.loadText = "加载中...";
+				///箭头函数的特性一：默认绑定外层this 如果使用箭头函数则不需要这样定义了
+				var _self = this;
+				setTimeout(function(){
+					let obj = {
+								uerpic:"../../static/logo.png",
+								username:"昵称",
+								isguanzhu:false,
+								title:"我是标题",
+								type:"img",
+								titlepic:"../../static/logo.png",
+								playnum:20,
+								long:'2:47',
+								infonum:{
+									index:0,//0 未操作 1 顶 2 踩
+									dingnum:11,
+									cai:11
+								},
+								commentnum:11,
+								sharenum:10
+							};
+						
+						console.info("开始执行加载更多")
+						_self.newsList[index].push(obj);
+						_self.loadText = "上拉加载更多";
+						console.info("上拉加载更多")
+				},500);
+				// this.loadText = "上拉加载更多";
+				// this.loadText = "加载中...";
+				// this.loadText = "没有更多数据了";
 			}
 		},
 		onLoad() {
@@ -62,6 +99,7 @@
 		},
 		data() {
 			return {
+				loadText:"上拉加载更多",
 				tabBars: [
 				{
 				    name: '关注',
