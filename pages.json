@@ -71,6 +71,36 @@
             "path" : "components/common/empty-view",
             "style" : {}
         }
+        ,{
+            "path" : "pages/search/search",
+            "style" : {
+				"app-plus":{
+					"scrollIndicator":"none",
+					"titleNView": {
+						"autoBackButton":false,
+						//搜索框配置
+						"searchInput":{
+							"disabled": false,
+							"align":"left",
+							"backgroundColor":"#F7F7F7",
+							"borderRadius":"4px",
+							"placeholder":"搜索糗事",
+							"placeholderColor":"#CCCCCC"
+						},
+						
+						"buttons": [
+							{
+								"color":"#000000",
+								"colorPressed":"#BBBBBB",
+								"float":"right",
+								"fontSize":"16px",
+								"text":"取消"
+							}
+						]
+					}
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

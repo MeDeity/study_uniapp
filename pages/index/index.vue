@@ -105,6 +105,14 @@
 					let height = res.windowHeight -uni.upx2px(100);
 					this.swiperHeight = height;
 				}
+			});
+			
+		},
+		//监听搜索框点击事件
+		onNavigationBarSearchInputClicked() {
+			console.info("打开搜索页");
+			uni.navigateTo({
+				url:'../search/search'
 			})
 		},
 		data() {
