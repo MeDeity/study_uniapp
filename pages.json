@@ -67,6 +67,10 @@
             "path" : "components/common/load-more",
             "style" : {}
         }
+        ,{
+            "path" : "components/common/empty-view",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

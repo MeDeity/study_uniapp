@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-tab-bar">
+	<view>
 		<swiper-tab-header :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="ontabtap"></swiper-tab-header>
 		
 		<swiper :indicator-dots="false" :autoplay="false" class="swiper-box" 
@@ -7,13 +7,18 @@
 		:current="tabIndex"
 		@change="tabChange">
 			<swiper-item v-for="(items,index) in newsList" :key="index">
-				<scroll-view scroll-y="true" class="scroll-v list" @scrolltolower="loadmore(index)">
-					<!--图文列表-->
-					<block v-for="(item,id) in items" :key="id">
-						<index-list :item="item" :index="id"></index-list>
-					</block>
-					<!--上拉加载-->
-					<load-more :loadText="loadText"></load-more>
+				<scroll-view scroll-y="true" @scrolltolower="loadmore(index)">
+					<template v-if="items.length>0">
+						<!--图文列表-->
+						<block v-for="(item,id) in items" :key="id">
+							<index-list :item="item" :index="id"></index-list>
+						</block>
+						<!--上拉加载-->
+						<load-more :loadText="loadText"></load-more>
+					</template>
+					<template v-else>
+						<empty-view></empty-view>
+					</template>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -37,11 +42,14 @@
 	import indexList from "../../components/index/index-list.vue";
 	import swiperTabHeader from "../../components/index/swiper-tab-header.vue";
 	import loadMore from "../../components/common/load-more.vue"
+	import emptyView from "../../components/common/empty-view.vue"
+	
 	export default {
 		components:{
 			indexList,
 			swiperTabHeader,
-			loadMore
+			loadMore,
+			emptyView
 		},
 		methods:{
 			ontabtap(index) {
@@ -157,23 +165,7 @@
 							},
 						],					
 						[
-							{
-								uerpic:"../../static/logo.png",
-								username:"昵称",
-								isguanzhu:false,
-								title:"我是标题",
-								type:"img",
-								titlepic:"../../static/logo.png",
-								playnum:20,
-								long:'2:47',
-								infonum:{
-									index:0,//0 未操作 1 顶 2 踩
-									dingnum:11,
-									cai:11
-								},
-								commentnum:11,
-								sharenum:10
-							},
+							
 						],				
 
 						[
